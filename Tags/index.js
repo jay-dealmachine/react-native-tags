@@ -47,6 +47,8 @@ class Tags extends React.Component {
       !(this.state.tags.indexOf(text.slice(0, -1).trim()) > -1)
     ) {
       this.addTag(text.slice(0, -1));
+    } else if (this.props.createTagOnLength && text.trim().length >= this.props.createTagOnLength) {
+      this.addTag(text.trim());
     } else {
       this.setState({ text });
     }
@@ -144,6 +146,7 @@ Tags.propTypes = {
   initialTags: PropTypes.arrayOf(PropTypes.string),
   createTagOnString: PropTypes.array,
   createTagOnReturn: PropTypes.bool,
+  createTagOnLength: PropTypes.number,
   onChangeTags: PropTypes.func,
   readonly: PropTypes.bool,
   maxNumberOfTags: PropTypes.number,
